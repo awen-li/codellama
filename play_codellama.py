@@ -7,7 +7,7 @@ from llama import Llama
 import sys
 
 def getRole ():
-    print (">>[role]:")
+    print (">>[role]:", end="")
     for line in sys.stdin:
         role = line.rstrip()
         break
@@ -16,7 +16,7 @@ def getRole ():
     return role
 
 def getContent ():
-    print (">>[content]:")
+    print (">>[content]:", end="")
     for line in sys.stdin:
         content = line.rstrip()
         return content
@@ -43,7 +43,8 @@ def main(
 
         role = getRole ()
         content = getContent ()
-        instructions.append ({"role":role, "content":content})
+        instructions.append ([{"role":role, "content":content}])
+        print (instructions)
 
         results = generator.chat_completion(
             instructions,  # type: ignore
